@@ -6,26 +6,26 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class LunoTrades {
+public class LunoUserTrades {
 
-    private final Trade[] trades;
+    private final UserTrade[] trades;
     
-    public LunoTrades(@JsonProperty(value="trades", required=true) Trade[] trades) {
-        this.trades = trades != null ? trades : new Trade[0];
+    public LunoUserTrades(@JsonProperty(value="trades", required=true) UserTrade[] trades) {
+        this.trades = trades != null ? trades : new UserTrade[0];
     }
 
-    public Trade[] getTrades() {
-        Trade[] copy = new Trade[trades.length];
+    public UserTrade[] getTrades() {
+        UserTrade[] copy = new UserTrade[trades.length];
         System.arraycopy(trades, 0, copy, 0, trades.length);
         return copy;
     }
     
     @Override
     public String toString() {
-        return "LunoTrades [trades(" + trades.length + ")=" + Arrays.toString(trades) + "]";
+        return "LunoUserTrades [trades(" + trades.length + ")=" + Arrays.toString(trades) + "]";
     }
 
-    public static class Trade {
+    public static class UserTrade {
         public final String pair;
         public final String orderId;
         public final OrderType type;
@@ -38,7 +38,7 @@ public class LunoTrades {
         public final BigDecimal feeCounter;
         public final boolean buy;
 
-        public Trade(
+        public UserTrade(
                 @JsonProperty(value="pair", required=false) String pair
                 , @JsonProperty(value="order_id", required=true) String orderId
                 , @JsonProperty(value="type", required=false) OrderType type
@@ -70,7 +70,7 @@ public class LunoTrades {
 
         @Override
         public String toString() {
-            return "Trade [base=" + base + ", counter=" + counter + ", feeBase=" + feeBase + ", feeCounter=" + feeCounter
+            return "UserTrade [base=" + base + ", counter=" + counter + ", feeBase=" + feeBase + ", feeCounter=" + feeCounter
                     + ", buy=" + buy + ", orderId=" + orderId + ", pair=" + pair + ", price=" + price + ", timestamp=" + getTimestamp()
                     + ", type=" + type + ", volume=" + volume + "]";
         }

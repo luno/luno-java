@@ -2,7 +2,12 @@
 
 Java library to connect to the [Luno REST API]
 
+#### Build the library
+```
+./gradlew build
+```
 
+#### Usage
 ```java
 // create the API instance
 LunoAPI luno = new LunoAPIImpl("key", "secret");
