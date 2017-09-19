@@ -1,7 +1,9 @@
 package com.luno.dto.marketdata;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -26,8 +28,9 @@ public class LunoTicker {
         this.pair = pair;
     }
 
-    public Date getTimestamp() {
-        return new Date(timestamp);
+    public LocalDateTime getTimestamp() {
+        return LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp),
+                ZoneId.systemDefault());
     }
 
     @Override
