@@ -1,8 +1,10 @@
 package com.luno.dto.marketdata;
 
 import java.math.BigDecimal;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Collections;
-import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
@@ -26,8 +28,9 @@ public class LunoOrderBook {
         this.bids = Stream.of(bids).collect(Collectors.toMap(o -> o.price, o -> o.volume, (v1, v2) -> v1.add(v2), () -> new TreeMap<BigDecimal, BigDecimal>((k1, k2) -> -k1.compareTo(k2))));
     }
 
-    public Date getTimestamp() {
-        return new Date(timestamp);
+    public LocalDateTime getTimestamp() {
+        return LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp),
+                ZoneId.systemDefault());
     }
 
     public Map<BigDecimal, BigDecimal> getBids() {
